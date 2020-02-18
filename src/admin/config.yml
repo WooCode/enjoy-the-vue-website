@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: enjoythevue/website
+  repo: WooCode/website
 
 publish_mode: editorial_workflow
 media_folder: 'static/uploads'
