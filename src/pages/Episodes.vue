@@ -15,14 +15,6 @@ export default {
     EpisodePreview,
     TagsAutocomplete
   },
-  methods: {
-    search(input) {      
-      if (input.length < 1) { return [] }
-      return this.sortedEpisodes.filter(episode => {
-        return node.tags.includes(input.toLowerCase()) || node.episode_title.toLowerCase().includes(input.toLowerCase());
-      });
-    }
-  },
   computed: {
     sortedEpisodes() {
       return this.$page.allEpisode.edges
@@ -50,7 +42,7 @@ export default {
       <section class="container__section container__header">
         <div class="container__section-inner">
           <h1>Episodes</h1>
-          <tags-autocomplete :allEpisodes="this.allEpisodes" :result.sync="result"/>
+          <tags-autocomplete :allEpisodes="this.sortedEpisodes" :result.sync="result"/>
         </div>        
       </section>
 
@@ -59,8 +51,17 @@ export default {
           <h2>Most Recent</h2>
           <ul class="episode-list" v-if="this.result.length === 0">
             <li
-              v-for="node in this.result"
-              :key="`episode-${node.episode_number}-list-item`"
+              v-for="episode in sortedEpisodes"
+              :key="`episode-${episode.episode_number}-list-item`"
+              class="episode-list-item"
+            >
+              <episode-preview :episode="episode" />
+            </li>
+          </ul>
+          <ul class="episode-list" v-if="this.result.length !== 0">
+            <li
+              v-for="episode in this.result"
+              :key="`episode-${episode.episode_number}-list-item`"
               class="episode-list-item"
             >
               <episode-preview :episode="episode" />

@@ -38,10 +38,14 @@
       dropdownValues() {
         let values = [];
         this.allEpisodes.map(episode => {
-          const title = episode.node.episode_title;
-          const tags = episode.node.tags.map(tag => {
-            values.push(tag);
-          });
+          const title = episode.episode_title;
+
+          if (episode.tags) {
+            const tags = episode.tags.map(tag => {
+              values.push(tag);
+            });
+          }
+          
           values.push(title);
         });
 
@@ -65,7 +69,10 @@
       search() {        
         if (this.value.length < 1) { this.$emit('update:result', this.allEpisodes); }
         let filteredEpisodes = this.allEpisodes.filter(episode => {
-          return episode.node.tags.includes(this.value.toLowerCase()) || episode.node.episode_title.toLowerCase().includes(this.value.toLowerCase());
+          if (episode.tags)          
+            return episode.tags.includes(this.value.toLowerCase()) || episode.episode_title.toLowerCase().includes(this.value.toLowerCase());
+          else
+            return episode.episode_title.toLowerCase().includes(this.value.toLowerCase());
         });
         this.$emit('update:result', filteredEpisodes);
       },
