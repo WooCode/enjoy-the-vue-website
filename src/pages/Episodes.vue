@@ -98,8 +98,8 @@ query {
         date_published
         episode_number
         episode_title
-        excerpt
         tags
+        excerpt
       }
     }
   }
