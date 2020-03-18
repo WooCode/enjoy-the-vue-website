@@ -1,12 +1,27 @@
 <script>
 import EpisodePreview from '../components/EpisodePreview';
+import TagsAutocomplete from '../components/TagsAutocomplete';
 
 export default {
+  data() {
+    return {
+      result: []
+    }
+  },
   metaInfo: {
     title: 'Episodes'
   },
   components: {
-    EpisodePreview
+    EpisodePreview,
+    TagsAutocomplete
+  },
+  methods: {
+    search(input) {      
+      if (input.length < 1) { return [] }
+      return this.sortedEpisodes.filter(episode => {
+        return node.tags.includes(input.toLowerCase()) || node.episode_title.toLowerCase().includes(input.toLowerCase());
+      });
+    }
   },
   computed: {
     sortedEpisodes() {
@@ -23,7 +38,7 @@ export default {
           } else {
             return 0;
           }
-        });
+        });    
     }
   }
 };
@@ -35,16 +50,17 @@ export default {
       <section class="container__section container__header">
         <div class="container__section-inner">
           <h1>Episodes</h1>
-        </div>
+          <tags-autocomplete :allEpisodes="this.allEpisodes" :result.sync="result"/>
+        </div>        
       </section>
 
       <div class="container__section">
         <div class="container__section-inner">
           <h2>Most Recent</h2>
-          <ul class="episode-list">
+          <ul class="episode-list" v-if="this.result.length === 0">
             <li
-              v-for="episode in sortedEpisodes"
-              :key="`episode-${episode.episode_number}-list-item`"
+              v-for="node in this.result"
+              :key="`episode-${node.episode_number}-list-item`"
               class="episode-list-item"
             >
               <episode-preview :episode="episode" />
@@ -83,6 +99,7 @@ query {
         episode_number
         episode_title
         excerpt
+        tags
       }
     }
   }

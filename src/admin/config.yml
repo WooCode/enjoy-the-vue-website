@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: enjoythevue/website
+  repo: WooCode/website
 
 publish_mode: editorial_workflow
 media_folder: 'static/uploads'
@@ -31,6 +31,10 @@ collections:
       - { label: 'RSS link', name: 'rss-link', widget: 'string' }
       - { label: 'Download link', name: 'download-link', widget: 'string' }
       - { label: 'Audio link', name: 'audio-link', widget: 'string' }
+      - label: 'Tags'
+        name: 'tags'
+        widget: 'list'
+        field: {name: tag, label: Tag, widget: string}
       - label: 'Sponsorship details'
         name: 'sponsorship-details'
         widget: 'object'
