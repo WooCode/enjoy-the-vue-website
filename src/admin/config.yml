@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: enjoythevue/website
+  repo: WooCode/enjoy-the-vue-website
 
 # when using the default proxy server port
 # local_backend: true
@@ -60,6 +60,10 @@ collections:
         valueField: 'sponsor-name'
         displayFields: ['sponsor-name']
         default: 'Linode'
+      - label: 'Tags'
+        name: 'tags'
+        widget: 'list'
+        field: {name: tag, label: Tag, widget: string}
       - label: 'Picks'
         name: 'picks'
         widget: 'list'
