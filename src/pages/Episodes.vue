@@ -67,7 +67,7 @@ export default {
           </ul>
           <ul class="episode-list" v-if="this.result.length !== 0">
             <li
-              v-for="episode in sortedEpisodes"
+              v-for="episode in this.result"
               :key="`episode-${episode.episode_number}-list-item`"
               class="episode-list-item"
             >

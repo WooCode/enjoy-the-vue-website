@@ -34,7 +34,7 @@ export default {
     return {
       value: '',
       open: false,
-      current: 0
+      current: -1
     };
   },
   props: {
@@ -88,19 +88,15 @@ export default {
       if (this.value.length < 1) {
         this.$emit('update:result', this.allEpisodes);
       }
+
       let filteredEpisodes = this.allEpisodes.filter(episode => {
-        if (episode.tags)
-          return (
-            episode.tags.includes(this.value.toLowerCase()) ||
-            episode.episode_title
-              .toLowerCase()
-              .includes(this.value.toLowerCase())
-          );
-        else
-          return episode.episode_title
-            .toLowerCase()
-            .includes(this.value.toLowerCase());
+        return (
+          episode.tags.includes(this.value.toLowerCase()) ||
+          episode.episode_title.toLowerCase().includes(this.value.toLowerCase())
+        )
       });
+
+      this.current = -1;
       this.$emit('update:result', filteredEpisodes);
     },
     distinct(list) {
@@ -115,8 +111,13 @@ export default {
       return a;
     },
     enter() {
-      this.value = this.dropdownValues[this.current];
+      let selected = this.dropdownValues[this.current];
       this.open = false;
+
+      if (selected) {
+        this.value = selected;
+      }
+
       this.search();
     },
     up() {
