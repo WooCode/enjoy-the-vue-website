@@ -1,5 +1,5 @@
 <template>
-  <div ref="root" class="form" v-bind:class="{ open: openSuggestion }">
+  <div ref="root" class="form search-form" v-bind:class="{ open: openSuggestion }">
     <input
       class="form__input"
       v-bind="inputProps"
@@ -163,6 +163,8 @@ export default {
   font-size: inherit;
   font-family: inherit;
   width: 100%;
+  max-height: 40rem;
+  overflow: scroll;
   display: block;
   padding-left: 0;
   padding: 0.5rem 0;
