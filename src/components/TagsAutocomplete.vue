@@ -9,6 +9,7 @@
       @keydown.up="up"
       @input="change"
       placeholder="Search for episode"
+      type="search"
     />
     <ul
       ref="resultList"
