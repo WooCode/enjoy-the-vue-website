@@ -1,7 +1,7 @@
 <template>
   <div ref="root" class="form search-form" v-bind:class="{ open: openSuggestion }">
     <input
-      class="form__input"
+      class="form__input search-form__input"
       v-bind="inputProps"
       v-model="value"
       @keydown.enter="enter"
@@ -148,12 +148,6 @@ export default {
 @import '../styles/forms.scss';
 @import '../styles/buttons.scss';
 
-.form {
-  &__input {
-    background: white;
-    font-size: $body-font-sm;
-  }
-}
 .dropdown-menu {
   border: none;
   border-radius: 4px;

@@ -51,4 +51,9 @@
   position: absolute;
   max-width: 780px;
   width: 90%;
+
+  &__input {
+    background: white !important;
+    font-size: $body-font-sm;
+  }  
 }
