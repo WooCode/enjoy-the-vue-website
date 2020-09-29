@@ -134,6 +134,8 @@ export default {
       if (this.open == false) {
         this.open = true;
       }
+      
+      this.search();
     },
     suggestionClick(index) {
       this.value = this.dropdownValues[index];
