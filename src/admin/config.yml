@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: WooCode/enjoy-the-vue-website
+  repo: enjoythevue/website
 
 # when using the default proxy server port
 # local_backend: true
