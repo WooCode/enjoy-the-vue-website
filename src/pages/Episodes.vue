@@ -87,7 +87,7 @@ export default {
   &__section-inner {
     max-width: 780px;
     margin: auto;
-    padding: 4rem 0 11rem 0;
+    padding-bottom: 8rem;
   }
 }
 
